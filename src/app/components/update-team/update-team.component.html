@@ -1,0 +1,9 @@
+<div id="myForm2">
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Team name" required [(ngModel)]="team.name" id="name" name="name">
+    <input type="email" placeholder="Country" required [(ngModel)]="team.country" id="country" name="country">
+    <input type="email" placeholder="City" required [(ngModel)]="team.city" id="city" name="city">
+    <input type="email" placeholder="Budget" required [(ngModel)]="team.budget" id="budget" name="budget">
+    <input id="add_button" type="submit" value="Update">
+  </form>
+</div>

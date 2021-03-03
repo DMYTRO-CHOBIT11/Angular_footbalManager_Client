@@ -1,0 +1,34 @@
+<main>
+  <div id="myForm2">
+    <form (ngSubmit)="onSubmit()">
+      <label>Player name</label>
+      <input type="text" placeholder="Player name" required [(ngModel)]="player.full_name" id="full_name" name="full_name">
+      <label>Birthday</label>
+      <input type="date" placeholder="Birthday" required [(ngModel)]="player.birthday" id="birthday" name="birthday">
+      <label>Start career</label>
+      <input type="date" placeholder="Start career" required [(ngModel)]="player.start_career" id="start_career" name="start_career">
+      <input id="add_button" type="submit" value="Add">
+    </form>
+  </div>
+  <h3>Players</h3>
+  <table class="table table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Star career</th>
+      <th scope="col">Operation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let player of players | async">
+      <td>{{player.full_name}}</td>
+      <td>{{player.birthday}}</td>
+      <td>{{player.start_career}}</td>
+      <td><button (click)="deletePlayer(player.id)" type="button" class="btn btn-danger">Delete</button>
+        <button (click)="getPlayerById(player.id)" style ="margin-left: 10px;"type="button" class="btn btn-danger">Details</button>
+        <button (click)="updatePlayerById(player.id)" style ="margin-left: 10px;"type="button" class="btn btn-danger">Update</button></td>
+    </tr>
+    </tbody>
+  </table>
+</main>

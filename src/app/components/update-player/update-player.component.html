@@ -1,0 +1,9 @@
+<div id="myForm2">
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Player name" required [(ngModel)]="player.full_name" id="full_name" name="full_name">
+    <span *ngIf="player.full_name.length<1">Input Player name</span>
+    <input type="date" placeholder="Birthday" required [(ngModel)]="player.birthday" id="birthday" name="birthday">
+    <input type="date" placeholder="Start career" required [(ngModel)]="player.start_career" id="start_career" name="start_career">
+    <input id="add_button" type="submit" value="Update">
+  </form>
+</div>
