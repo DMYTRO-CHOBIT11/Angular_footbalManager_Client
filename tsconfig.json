@@ -19,5 +19,7 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
-  }
+  },
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true
 }
