@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TeamService } from '../../services/team.service';
 import { Player } from '../../common/player';
 import { PlayerService } from '../../services/player.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-player',
@@ -14,7 +15,12 @@ export class UpdatePlayerComponent implements OnInit {
 
   id:number;
   player:Player;
-
+  form=new FormGroup({
+    full_name:new FormControl("",Validators.compose([Validators.required,
+      Validators.minLength(3)])),
+    birthday:new FormControl('',Validators.required),
+    start_career:new FormControl('',Validators.required)
+  });
   constructor(private route: ActivatedRoute, private router: Router, private playerService: PlayerService) { }
 
   ngOnInit(): void {
@@ -37,7 +43,7 @@ export class UpdatePlayerComponent implements OnInit {
       })
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
     this.updatePlayer();
   }
 

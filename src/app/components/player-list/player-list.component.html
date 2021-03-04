@@ -1,13 +1,28 @@
 <main>
   <div id="myForm2">
-    <form (ngSubmit)="onSubmit()">
-      <label>Player name</label>
-      <input type="text" placeholder="Player name" required [(ngModel)]="player.full_name" id="full_name" name="full_name">
-      <label>Birthday</label>
-      <input type="date" placeholder="Birthday" required [(ngModel)]="player.birthday" id="birthday" name="birthday">
-      <label>Start career</label>
-      <input type="date" placeholder="Start career" required [(ngModel)]="player.start_career" id="start_career" name="start_career">
-      <input id="add_button" type="submit" value="Add">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="form-inline">
+      <label>Player name:</label>
+      <input class="form-control" type="text" placeholder="Player name" [(ngModel)]="player.full_name" formControlName="full_name" name="full_name">
+      <div *ngIf="form.controls['full_name'].invalid && form.controls['full_name'].touched" class="alert">
+        <div *ngIf="form.controls['full_name'].errors.required">
+          <small class="error">Please enter name</small>
+        </div>
+      </div>
+      <label>Birthday:</label>
+      <input class="form-control" type="date" placeholder="Birthday" [(ngModel)]="player.birthday" formControlName="birthday" name="birthday">
+      <div *ngIf="form.controls['birthday'].invalid && form.controls['birthday'].touched" class="alert">
+        <div *ngIf="form.controls['birthday'].errors.required">
+          <small class="error">Please enter birthday</small>
+        </div>
+      </div>
+      <label>Start career:</label>
+      <input class="form-control" type="date" placeholder="Start career" [(ngModel)]="player.start_career" formControlName="start_career" name="start_career">
+      <div *ngIf="form.controls['start_career'].invalid && form.controls['start_career'].touched" class="alert">
+        <div *ngIf="form.controls['start_career'].errors.required">
+          <small class="error">Please enter birthday</small>
+        </div>
+      </div>
+      <input id="add_button" type="submit" value="Add" style="background: aqua">
     </form>
   </div>
   <h3>Players</h3>

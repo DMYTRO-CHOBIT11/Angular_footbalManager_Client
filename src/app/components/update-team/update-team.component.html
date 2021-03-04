@@ -1,9 +1,32 @@
 <div id="myForm2">
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Team name" required [(ngModel)]="team.name" id="name" name="name">
-    <input type="email" placeholder="Country" required [(ngModel)]="team.country" id="country" name="country">
-    <input type="email" placeholder="City" required [(ngModel)]="team.city" id="city" name="city">
-    <input type="email" placeholder="Budget" required [(ngModel)]="team.budget" id="budget" name="budget">
-    <input id="add_button" type="submit" value="Update">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="form-inline">
+    <label>Team name:</label>
+    <input class="form-control" type="text" required   formControlName="name" [(ngModel)]="team.name" name="name">
+    <div *ngIf="form.controls['name'].invalid && form.controls['name'].touched" class="alert">
+      <div *ngIf="form.controls['name'].errors.required">
+        <small class="error">Please enter name</small>
+      </div>
+    </div>
+    <label>Country:</label>
+    <input class="form-control" type="text" formControlName="country" [(ngModel)]="team.country" name="country">
+    <div *ngIf="form.controls['country'].invalid && form.controls['country'].touched" class="alert">
+      <div *ngIf="form.controls['country'].errors.required">
+        <small class="error">Please enter country</small>
+      </div>
+    </div>
+    <label>City:</label>
+    <input class="form-control" type="text" formControlName="city" [(ngModel)]="team.city" name="city">
+    <div *ngIf="form.controls['city'].invalid && form.controls['city'].touched" class="alert">
+      <div *ngIf="form.controls['city'].errors.required">
+        <small class="error">Please enter city</small>
+      </div>
+    </div>
+    <label>Budget:</label>
+    <input class="form-control" type="number" formControlName="budget" [(ngModel)]="team.budget" name="budget">
+    <div *ngIf="form.controls['budget'].invalid && form.controls['budget'].touched" class="alert">
+      <div *ngIf="form.controls['budget'].errors.required">
+        <small class="error">Please enter budget</small>
+      </div>
+    </div>
+    <input id="add_button" type="submit" value="Update" style="background: aqua">
   </form>
-</div>

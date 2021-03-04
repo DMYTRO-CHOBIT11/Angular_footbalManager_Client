@@ -19,6 +19,10 @@ export class TeamDetailsComponent implements OnInit {
               private teamService: TeamService) { }
 
   ngOnInit(): void {
+    this.getTeam();
+  }
+
+  getTeam(){
     this.team = new Team();
 
     this.id = this.route.snapshot.params.id;
@@ -29,7 +33,6 @@ export class TeamDetailsComponent implements OnInit {
         this.team = data;
       });
   }
-
   updatePlayerById(id: number){
     this.router.navigate(['updatePlayer', id]);
   }
@@ -49,7 +52,7 @@ export class TeamDetailsComponent implements OnInit {
   }
   terminateContract(id: number){
     this.teamService.terminateContract(id);
-    this.ngOnInit();
+    this.teamService.getTeam(this.team.id)
   }
 
 }

@@ -16,9 +16,13 @@ export class TeamListComponent implements OnInit {
   team: Team = new Team();
   teams: Observable<Team[]>;
 
-  // form = new FormGroup({
-  //   name:new FormControl('',Validators.required)
-  // });
+  form= new FormGroup({
+    name:new FormControl("",Validators.compose([Validators.required,
+      Validators.minLength(3)])),
+    city:new FormControl('',Validators.required),
+    country:new FormControl('',Validators.required),
+    budget:new FormControl('',Validators.required),
+  });
   constructor(private teamService: TeamService, private router: Router) {}
 
 
@@ -30,7 +34,7 @@ export class TeamListComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
     this.saveTeam();
   }
 

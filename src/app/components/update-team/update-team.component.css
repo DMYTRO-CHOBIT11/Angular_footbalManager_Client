@@ -1,0 +1,16 @@
+.alert{
+  margin-top: -18px;
+}
+.error{
+  color: red;
+}
+
+label,input,.alert{
+  display:inline-flex;
+}
+h3{
+  text-align: center;
+}
+.about{
+  text-align: center;
+}

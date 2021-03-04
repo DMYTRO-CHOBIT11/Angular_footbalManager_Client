@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'updatePlayer/:id',component: UpdatePlayerComponent},
   {path: 'deletePlayer/:id',component: PlayerListComponent},
   {path: 'players',component:PlayerListComponent},
-  {path: 'terminateContract/:id',component:PlayerDetailsComponent},
+  {path: 'terminateContract/:id',component:TeamDetailsComponent},
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Player } from '../../common/player';
 import { PlayerService } from '../../services/player.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-player-list',
@@ -13,6 +14,12 @@ export class PlayerListComponent implements OnInit {
   player: Player = new Player();
   players: Observable<Player[]>;
 
+  form=new FormGroup({
+    full_name:new FormControl("",Validators.compose([Validators.required,
+      Validators.minLength(3)])),
+    birthday:new FormControl('',Validators.required),
+    start_career:new FormControl('',Validators.required)
+  });
   constructor(private playerService: PlayerService, private router: Router) {}
 
 
@@ -24,7 +31,7 @@ export class PlayerListComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
     this.savePlayer();
   }
 

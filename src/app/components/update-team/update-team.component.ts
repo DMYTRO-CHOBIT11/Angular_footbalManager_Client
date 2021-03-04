@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Team } from '../../common/team';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TeamService } from '../../services/team.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-update-team',
@@ -12,7 +13,13 @@ export class UpdateTeamComponent implements OnInit {
 
   id:number;
   team:Team;
-
+  form= new FormGroup({
+    name:new FormControl("",Validators.compose([Validators.required,
+      Validators.minLength(3)])),
+    city:new FormControl('',Validators.required),
+    country:new FormControl('',Validators.required),
+    budget:new FormControl('',Validators.required),
+  });
   constructor(private route: ActivatedRoute, private router: Router, private teamService: TeamService) { }
 
   ngOnInit(): void {
@@ -35,7 +42,7 @@ export class UpdateTeamComponent implements OnInit {
       })
   }
 
-  onSubmit() {
+  onSubmit(form: FormGroup) {
     this.updateTeam();
   }
 

@@ -19,7 +19,6 @@ export class PlayerDetailsComponent implements OnInit {
   player: Player;
   teams:Observable<Team[]>;
 
-  teamSell:number;
   teamBuy:number;
   commission:number;
 
@@ -42,16 +41,18 @@ export class PlayerDetailsComponent implements OnInit {
 
   terminateContract(){
     this.teamService.terminateContract(this.id);
+    this.ngOnInit()
   }
   onSubmit(){
     let team_id=(<HTMLInputElement>document.getElementById("list")).value;
     this.teamService.buyFreePlayer(this.id,Number.parseInt(team_id));
+    alert("Player was bought");
   }
 
   transfer(){
-    let sellTeam=(<HTMLInputElement>document.getElementById("sellTeam")).value;
     let buyTeam=(<HTMLInputElement>document.getElementById("buyTeam")).value;
-    this.teamService.transfer(this.id,+sellTeam,+buyTeam,this.commission)
+    this.teamService.transfer(this.id,this.player.team.id,+buyTeam,this.commission)
+    this.ngOnInit()
   }
 
 }

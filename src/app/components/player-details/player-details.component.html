@@ -1,4 +1,4 @@
-<div *ngIf="player">
+<div *ngIf="player" class="about">
   <h3>About Player</h3>
   <div>
     <label ><b>Name: </b></label> {{player.full_name}}
@@ -11,10 +11,11 @@
   </div>
 </div>
 
-<div *ngIf="player.team==null">
-<div id="myForm2">
+<div *ngIf="player.team==null" class="free">
+  <label>Transter to Team</label>
+<div id="myForm2" >
   <form (ngSubmit)="onSubmit()">
-    <select id="list" class='form-control'>
+    <select id="list" >
       <option *ngFor="let t of teams | async" [value]="t.id"
               >{{t.name}}</option>
     </select>
@@ -23,18 +24,19 @@
 </div>
 </div>
 
-<div *ngIf="player.team!=null">
+<div *ngIf="player.team!=null" class="transfer">
   <h3>Transfer</h3>
 <form (ngSubmit)="transfer()">
-  <label>Team Sell</label>
-  <select id="sellTeam">
-    <option *ngFor="let t of teams | async" [defaultSelected]="player.team.id" [value]="t.id" name="teamSell_id"
-    >{{t.name}}</option>
-  </select>
-  <label>Team Buy</label>
+<!--  <label>Team Sell:</label>-->
+<!--  <select id="sellTeam">-->
+<!--    <option *ngFor="let t of teams | async" [ngValue]="deffault" [value]="deffault" name="teamSell_id"-->
+<!--    >{{t.name}}</option>-->
+<!--  </select>-->
+  <label>Team Buy:</label>
   <select id=buyTeam>
   <option *ngFor="let t of teams | async" [value]="t.id" name="teamBuy_id">{{t.name}}</option>
   </select>
+  <label>Commission:</label>
   <input type="number" [(ngModel)]="commission" name="commission">
   <input type="submit" value="Transfer">
 </form>
